@@ -65,4 +65,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Donation
 
-Buy me a coffee: https://www.buymeacoffee.com/islamsamy
+Buy me a Pizza: https://www.buymeacoffee.com/islamsamy
