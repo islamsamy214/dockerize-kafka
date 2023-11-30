@@ -16,13 +16,13 @@ Before getting started, make sure you have the following installed on your syste
 1. Clone this repository to your local machine:
 
     ```bash
-    git clone https://github.com/your-username/kafka-zookeeper-docker-compose.git
+    git clone https://github.com/islamsamy214/dockerize-kafka
     ```
 
 2. Change into the cloned directory:
 
     ```bash
-    cd kafka-zookeeper-docker-compose
+    cd dockerize-kafka
     ```
 
 3. Edit the `docker-compose.yml` file if needed. You can modify Kafka configurations, add topics, or change container names according to your requirements.
