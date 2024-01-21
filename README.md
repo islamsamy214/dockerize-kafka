@@ -8,7 +8,7 @@ This repository provides a Docker Compose setup for running Apache Kafka along w
 
 ```
    git clone https://github.com/islamsamy214/kafka-docker-compose.git
-   cd kafka-docker-compose
+   cd kafka-docker-compose/compose-for-localhost
 ```
 
 2. Start the Kafka containers:
