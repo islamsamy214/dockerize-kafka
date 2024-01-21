@@ -18,9 +18,9 @@ docker-compose up -d
 ```
 This will start Kafka
 
-## Controlling Topics
+# Controlling Topics
 
-# Create Topics
+## Create Topics
 
 To create topics, modify the KAFKA_CREATE_TOPICS environment variable in the docker-compose.yml file:
 
@@ -36,7 +36,7 @@ docker-compose down
 docker-compose up -d
 ```
 
-# List Topics
+## List Topics
 
 To list topics, run the following command inside the Kafka container:
 
@@ -45,9 +45,9 @@ docker exec -it kafka-container /opt/bitnami/kafka/bin/kafka-topics.sh --list --
 ```
 
 Replace kafka-container with the actual name of your Kafka container.
-## Controlling Brokers
+# Controlling Brokers
 
-# Adjust Broker Configuration
+## Adjust Broker Configuration
 
 To adjust broker configuration, modify the docker-compose.yml file:
 
@@ -68,14 +68,14 @@ environment:
 Restart the containers.
 
 
-## Controlling Consumers
+# Controlling Consumers
 
-# Create Consumers
+## Create Consumers
 
 To create consumers, modify the consumer configuration in your application code or configuration files.
 
 
-# View Consumer Groups
+## View Consumer Groups
 
 To view consumer groups, run the following command inside the Kafka container:
 
@@ -86,17 +86,17 @@ docker exec -it kafka-container /opt/bitnami/kafka/bin/kafka-consumer-groups.sh 
 
 Replace kafka-container with the actual name of your Kafka container.
 
-## Additional Options
-# Security (SSL/TLS)
+# Additional Options
+## Security (SSL/TLS)
 
 For securing Kafka with SSL/TLS, provide SSL configuration in the docker-compose.yml file and adjust Kafka broker and consumer configurations accordingly.
 
-# Advanced Configuration
+## Advanced Configuration
 
 For advanced configurations, refer to the official Kafka documentation and customize the docker-compose.yml file accordingly.
 <a href="https://hub.docker.com/r/bitnami/kafka">Kafka Bitnami Official Docs</a>
 
-# Cleanup
+## Cleanup
 
 To stop and remove the containers:
 
