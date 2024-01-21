@@ -1,68 +1,107 @@
 # dockerize-kafka
-A simple kafka docker with its zookeeper
-# Kafka and Zookeeper Docker Compose Setup
 
-This repository contains a Docker Compose configuration for running Apache Kafka and Zookeeper in a Docker environment. It allows you to easily set up a Kafka broker for development or testing purposes.
+This repository provides a Docker Compose setup for running Apache Kafka along with options to control topics, brokers, and consumers.
 
-## Prerequisites
+## Getting Started
 
-Before getting started, make sure you have the following installed on your system:
+1. Clone the repository:
 
-- [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
+```
+   git clone https://github.com/islamsamy214/kafka-docker-compose.git
+   cd kafka-docker-compose
+```
 
-## Usage
+2. Start the Kafka containers:
 
-1. Clone this repository to your local machine:
+```
+docker-compose up -d
+```
+This will start Kafka
 
-    ```bash
-    git clone https://github.com/islamsamy214/dockerize-kafka
-    ```
+## Controlling Topics
 
-2. Change into the cloned directory:
+# Create Topics
 
-    ```bash
-    cd dockerize-kafka
-    ```
+To create topics, modify the KAFKA_CREATE_TOPICS environment variable in the docker-compose.yml file:
 
-3. Edit the `docker-compose.yml` file if needed. You can modify Kafka configurations, add topics, or change container names according to your requirements.
+```
+environment:
+  - KAFKA_CREATE_TOPICS=my-topic:1:1,another-topic:1:1
+```
 
-4. Build and start the containers:
+Restart the containers:
 
-    ```bash
-    docker-compose up -d
-    ```
+```
+docker-compose down
+docker-compose up -d
+```
 
-   This will download the required images and start the Kafka and Zookeeper containers in the background.
+# List Topics
 
-5. To stop the containers, run:
+To list topics, run the following command inside the Kafka container:
 
-    ```bash
-    docker-compose down
-    ```
+```
+docker exec -it kafka-container /opt/bitnami/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+```
 
-## Configuration
+Replace kafka-container with the actual name of your Kafka container.
+## Controlling Brokers
 
-### Kafka Configuration
+# Adjust Broker Configuration
 
-You can customize Kafka settings in the `docker-compose.yml` file under the `kafka` service. Key configuration options include:
+To adjust broker configuration, modify the docker-compose.yml file:
 
-- `KAFKA_ADVERTISED_LISTENERS`: Defines the advertised listeners for Kafka.
-- `KAFKA_CREATE_TOPICS`: Allows you to specify topics and their configurations.
-- ...
 
-### Network Configuration
+```
+environment:
+  - KAFKA_CFG_<CONFIG_NAME>=<CONFIG_VALUE>
+```
 
-By default, a bridge network named `microservices-network` is used. You can customize the network settings in the `docker-compose.yml` file under the `networks` section.
+For example, to change the broker ID:
 
-## Contributing
 
-Feel free to contribute to this project by opening issues or submitting pull requests. Your feedback is highly appreciated!
+```
+environment:
+  - KAFKA_CFG_BROKER_ID=1
+```
 
-## License
+Restart the containers.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Donation
+## Controlling Consumers
 
-Buy me a Pizza: https://www.buymeacoffee.com/islamsamy
+# Create Consumers
+
+To create consumers, modify the consumer configuration in your application code or configuration files.
+
+
+# View Consumer Groups
+
+To view consumer groups, run the following command inside the Kafka container:
+
+
+```
+docker exec -it kafka-container /opt/bitnami/kafka/bin/kafka-consumer-groups.sh --list --bootstrap-server localhost:9092
+```
+
+Replace kafka-container with the actual name of your Kafka container.
+
+## Additional Options
+# Security (SSL/TLS)
+
+For securing Kafka with SSL/TLS, provide SSL configuration in the docker-compose.yml file and adjust Kafka broker and consumer configurations accordingly.
+
+# Advanced Configuration
+
+For advanced configurations, refer to the official Kafka documentation and customize the docker-compose.yml file accordingly.
+<a href="https://hub.docker.com/r/bitnami/kafka">Kafka Bitnami Official Docs</a>
+
+# Cleanup
+
+To stop and remove the containers:
+
+```
+docker-compose down
+```
+
+This will stop and remove the Kafka and Zookeeper containers.
