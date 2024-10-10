@@ -1,0 +1,12 @@
+version: '3'
+services:
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    container_name: kafdrop
+    environment:
+      KAFKA_BROKERCONNECT: "localhost:9092"  # Use localhost since Kafka is running on the host
+      JVM_OPTS: "-Xms32M -Xmx64M"
+      SERVER_PORT: 9000
+    restart: unless-stopped
+    network_mode: "host"  # Share the host network
+
