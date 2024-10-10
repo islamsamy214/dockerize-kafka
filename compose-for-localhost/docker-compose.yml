@@ -4,6 +4,7 @@ services:
   kafka:
     container_name: kafka-container
     image: docker.io/bitnami/kafka:3.6
+    restart: unless-stopped
     ports:
       - "9092:9092"
       - "9094:9094"
@@ -22,5 +23,4 @@ services:
 
 volumes:
   kafka_data:
-    driver: local
 
